@@ -4,8 +4,8 @@ class User {
             code: 0,
             msg: 'success',
             body: {
-                name: 'lhb',
-                phone: '+86 18210981719'
+                name: '张三',
+                phone: '13800000000'
             }
         }
     }
