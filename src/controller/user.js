@@ -1,5 +1,12 @@
+import { query } from '../sql';
+
 class User {
     async userInfo(ctx) {
+        // query("select user_name, phone from user where id=1;",function(err, vals, fields){
+        //     console.log('err ==>', err)
+        //     console.log('vals ==>', vals)
+        //     console.log('fields ==>', fields)
+        // });
         ctx.body = {
             code: 0,
             msg: 'success',

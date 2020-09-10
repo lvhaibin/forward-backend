@@ -13,7 +13,8 @@
   "dependencies": {
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
-    "koa-router": "^9.1.0"
+    "koa-router": "^9.1.0",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
