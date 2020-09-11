@@ -7,17 +7,24 @@ const pool = mysql.createPool({
     database:'Forward'
 });
 
-export function query (sql, options, callback) {
-    pool.getConnection(function(err, conn){
-        if(err) {
-            callback(err, null, null);
-        } else {
-            conn.query(sql,options,function(err, results, fields){
-                //事件驱动回调
-                callback(err, results, fields);
-            });
-            //释放连接，需要注意的是连接释放需要在此处释放，而不是在查询回调里面释放
-            conn.release();
-        }
+const query = (sql, val) => {
+    return new Promise((resolve, reject) => {
+        pool.getConnection(function (err, connection) {
+            if (err) {
+                reject(err);
+            }
+            else {
+                connection.query(sql, val, (err, fields) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(fields);
+                    }
+                    connection.release();
+                })
+            }
+        });
     });
-};
+}
+
+export default query;
