@@ -2,9 +2,9 @@ import mysql from 'mysql';
 
 const pool = mysql.createPool({
     host: '127.0.0.1',
-    user:'root',
-    password:'lvhaibin',
-    database:'Forward'
+    user: 'root',
+    password: 'lvhaibin',
+    database: 'Forward'
 });
 
 const query = (sql, val) => {
