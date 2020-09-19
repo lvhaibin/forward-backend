@@ -14,7 +14,7 @@ app.use(koaBody())
     .use(KoaJwt({
         secret: 'forward_secret',
     }).unless({
-        path: [/api\/v1.0\/login/]
+        path: [/api\/v1.0\/login/, /api\/v1.0\/register/]
     })).use((ctx, next) => {
         if (ctx.header && ctx.header.authorization) {
             const parts = ctx.header.authorization.split(' ');

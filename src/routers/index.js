@@ -10,5 +10,10 @@ export const appRoutes = [
         path: '/api/v1.0/login',
         method: 'post',
         action: User.login
+    },
+    {
+        path: '/api/v1.0/register',
+        method: 'post',
+        action: User.register
     }
 ]
