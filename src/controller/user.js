@@ -1,6 +1,7 @@
 import query from '../connection/mysql.js';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import moment from 'moment';
 
 function md5(data) {
     // 以md5的格式创建一个哈希值
@@ -63,6 +64,7 @@ class User {
 
     async register(ctx) {
         const { username, password, phone, email, profile } = ctx.request.body;
+        const date = moment().format('YYYY/MM/DD');
         const res = await query(`select id, user_name, phone, password, email from user where user_name='${escape(username)}' or phone='${escape(phone)}';`);
         if (res && res[0]) {
             ctx.body = {
@@ -75,7 +77,7 @@ class User {
             if (!profile) {
                 curProfile = 'demand';
             }
-            const result = await query(`INSERT INTO user (user_name, password, phone, email, profile) values ('${username}', '${md5(password)}', '${phone}', '${email}', '${curProfile}');`);
+            const result = await query(`INSERT INTO user (user_name, password, phone, email, profile, created_at, updated_at) values ('${username}', '${md5(password)}', '${phone}', '${email}', '${curProfile}', '${date}', '${date}');`);
             if (!result) {
                 ctx.body = {
                     code: 101,

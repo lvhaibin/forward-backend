@@ -1,4 +1,5 @@
 import User from '../controller/user.js';
+import Exhibition from '../controller/exhibition.js';
 
 export const appRoutes = [
     {
@@ -15,5 +16,12 @@ export const appRoutes = [
         path: '/api/v1.0/register',
         method: 'post',
         action: User.register
+    },
+
+
+    {
+        path: '/api/v1.0/exhibition/create',
+        method: 'post',
+        action: Exhibition.create
     }
 ]
