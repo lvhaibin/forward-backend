@@ -12,7 +12,7 @@ class User {
     async userInfo(ctx) {
         const name = ctx.query.name;
         if (name) {
-            const res = await query(`select user_name, phone from user where user_name='${ctx.query.name}';`);
+            const res = await query(`select user_name, phone from user where user_name='${escape(name)}';`);
             ctx.body = {
                 code: 0,
                 msg: 'success',
@@ -32,7 +32,7 @@ class User {
 
     async login(ctx) {
         const { username, password } = ctx.request.body;
-        const res = await query(`select id, user_name, phone, password, email from user where user_name='${username}' or phone='${username}';`);
+        const res = await query(`select id, user_name, phone, password, email from user where user_name='${escape(username)}' or phone='${escape(username)}';`);
         if (!res || !res[0]) {
             ctx.body = {
                 code: 101,
@@ -63,7 +63,7 @@ class User {
 
     async register(ctx) {
         const { username, password, phone, email, profile } = ctx.request.body;
-        const res = await query(`select id, user_name, phone, password, email from user where user_name='${username}' or phone='${phone}';`);
+        const res = await query(`select id, user_name, phone, password, email from user where user_name='${escape(username)}' or phone='${escape(phone)}';`);
         if (res && res[0]) {
             ctx.body = {
                 code: 101,
