@@ -23,5 +23,10 @@ export const appRoutes = [
         path: '/api/v1.0/exhibition/create',
         method: 'post',
         action: Exhibition.create
-    }
+    },
+    {
+        path: '/api/v1.0/exhibition/list',
+        method: 'get',
+        action: Exhibition.list
+    },
 ]
