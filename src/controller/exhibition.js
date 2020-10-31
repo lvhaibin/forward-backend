@@ -34,7 +34,7 @@ class Exhibition {
 
     async create(ctx) {
         const { name, time, address } = ctx.request.body;
-        const date = moment().format('YYYY/MM/DD')
+        const date = moment().format('YYYY/MM/DD');
         const result = await query(`INSERT INTO exhibition (name, time, address, inviteCode, created_at, updated_at) values ('${name}', '${new Date().getTime()}', '${address}', '${md5(`${name} ${time} ${address}`)}', '${date}', '${date}');`);
         if (!result) {
             ctx.body = {
